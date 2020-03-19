@@ -66,11 +66,11 @@ There are three types of key representations that are used:
   - Get this value with `gaiad tendermint show-validator`
   - e.g. `cosmosvalconspub1zcjduepq0ms2738680y72v44tfyqm3c9ppduku8fs6sr73fx7m666sjztznqzp2emf`
 
-#### Migrate Keys From Legacy On-Disk Keybase To OS Built-in Secret Store
+#### Migrate Keys From Legacy On-Disk Keybase To The New Keyring
 
-Older versions of `gaiacli` used store keys in the user's home directory. If you are migrating
-from an old version of `gaiacli` you will need to migrate your old keys into your operating system's
-credentials storage by running the following command:
+Older versions of `gaiacli` used to store keys in an on-disk LevelDB database.
+If you are migrating from an old version of `gaiacli` you will need to migrate
+your old keys into the new keyring implementation by running the following command:
 
 ```bash
 gaiacli keys migrate
@@ -78,6 +78,11 @@ gaiacli keys migrate
 
 The command will prompt for every passphrase. If a passphrase is incorrect, it will skip the
 respective key.
+
+::: tip Note
+You can select the keyring's storage backend through the `--keyring-backend` flag.
+Please refer to `gaiacli keys -h` help screen for more information.
+:::
 
 #### Generate Keys
 
